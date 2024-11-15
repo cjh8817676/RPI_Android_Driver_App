@@ -3,6 +3,7 @@ package com.example.jni_spi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.TextView;
 
 import com.example.jni_spi.databinding.ActivityMainBinding;
@@ -27,10 +28,10 @@ public class MainActivity extends AppCompatActivity {
         stopButton = findViewById(R.id.stopButton);
 
         spiManager = SPIManager.getInstance();
-        spiManager.setSpeedUpdateListener(speed ->
-                runOnUiThread(() -> speedometer.setSpeed(speed))
+        spiManager.setSpeedUpdateListener(speed -> {
+            runOnUiThread(() -> speedometer.setSpeed(speed));
+            }
         );
-
         startButton.setOnClickListener(v -> {
             startButton.setEnabled(false);
             stopButton.setEnabled(true);
